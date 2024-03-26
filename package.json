@@ -1,0 +1,19 @@
+{
+  "name": "past-tweets-notifier",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.5",
+    "nodemailer": "^6.9.13"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.1",
+    "@types/nodemailer": "^6.4.14",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}

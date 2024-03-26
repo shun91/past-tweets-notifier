@@ -1,2 +1,3 @@
 # past-tweets-notifier
-Notion Databaseに保存している過去のTweetを通知するツール
+
+Notion Database に保存している過去の Tweet を通知するツール
