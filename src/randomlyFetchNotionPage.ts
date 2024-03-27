@@ -1,6 +1,5 @@
 import { Client } from "@notionhq/client";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import nodemailer from "nodemailer";
 
 const apiKey = process.env.NOTION_API_KEY;
 const databaseId = process.env.NOTION_DATABASE_ID ?? "";
