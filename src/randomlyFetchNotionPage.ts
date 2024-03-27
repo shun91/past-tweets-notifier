@@ -26,7 +26,7 @@ const getTweetCreatedAt = (page: PageObjectResponse) => {
 
 const getTweetUrl = (page: PageObjectResponse) => {
   const { url } = page.properties;
-  return url.type === "url" ? url.url : "";
+  return url.type === "url" ? url.url ?? "" : "";
 };
 
 export async function randomlyFetchNotionPages() {
@@ -41,30 +41,6 @@ export async function randomlyFetchNotionPages() {
   const username = getUsername(first);
   const tweetCreatedAt = getTweetCreatedAt(first);
   const url = getTweetUrl(first);
-
-  // GMailで送信
-  const email = process.env.GMAIL_ADDRESS;
-  const appPass = process.env.GMAIL_APP_PASSWORD;
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: { user: email, pass: appPass },
-  });
-  const result = await transporter.sendMail({
-    from: email,
-    to: email,
-    subject: "Today's Tweet",
-    text: `${title}
-
-■ Tweeted by
-${username}
-
-■ Tweeted at
-${tweetCreatedAt}
-
-■ URL
-${url}`,
-  });
-  console.log(result);
 
   return { title, username, tweetCreatedAt, url };
 }

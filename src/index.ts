@@ -1,3 +1,12 @@
 import { randomlyFetchNotionPages } from "./randomlyFetchNotionPage";
+import { sendMail } from "./sendMail";
 
-randomlyFetchNotionPages().then((r) => console.log(JSON.stringify(r, null, 2)));
+const main = async () => {
+  const tweet = await randomlyFetchNotionPages();
+  const mailResult = await sendMail(tweet);
+
+  console.info(JSON.stringify({ tweet, mailResult }, null, 2));
+  console.info("✨ Mail sent successfully!");
+};
+
+main();
