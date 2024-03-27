@@ -1,0 +1,23 @@
+name: Notify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+
+      - id: "setup-node"
+        uses: "actions/setup-node@v2"
+        with:
+          node-version: 18.x
+
+      - id: "install"
+        run: yarn install --frozen-lockfile
+
+      - id: "notify"
+        run: yarn ts-node src/index.ts
