@@ -1,6 +1,9 @@
 name: Notify
 
 on:
+  schedule:
+    - cron: "0 21 * * *"
+  # 動作確認用に push 時も実行させる
   push:
     branches:
       - main
