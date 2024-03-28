@@ -23,7 +23,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - id: "notify"
-        run: yarn ts-node src/index.ts
+        run: yarn ts-node src/notifyRandomly.ts
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
