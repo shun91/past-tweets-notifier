@@ -1,8 +1,8 @@
-import { randomlyFetchNotionPages } from "./randomlyFetchNotionPage";
+import { fetchRandomly } from "./notion";
 import { sendMail } from "./sendMail";
 
 const main = async () => {
-  const tweet = await randomlyFetchNotionPages();
+  const tweet = await fetchRandomly();
   const mailResult = await sendMail(tweet);
 
   console.info(JSON.stringify({ tweet, mailResult }, null, 2));

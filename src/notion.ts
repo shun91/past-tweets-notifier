@@ -28,7 +28,14 @@ const getTweetUrl = (page: PageObjectResponse) => {
   return url.type === "url" ? url.url ?? "" : "";
 };
 
-export async function randomlyFetchNotionPages() {
+const toTweet = (page: PageObjectResponse) => ({
+  title: getTitle(page),
+  username: getUsername(page),
+  tweetCreatedAt: getTweetCreatedAt(page),
+  url: getTweetUrl(page),
+});
+
+export async function fetchRandomly() {
   const { results } = await notion.databases.query({
     database_id: databaseId,
     sorts: [{ property: "rand", direction: "ascending" }],
@@ -36,10 +43,5 @@ export async function randomlyFetchNotionPages() {
   });
 
   const first = results[0] as PageObjectResponse;
-  const title = getTitle(first);
-  const username = getUsername(first);
-  const tweetCreatedAt = getTweetCreatedAt(first);
-  const url = getTweetUrl(first);
-
-  return { title, username, tweetCreatedAt, url };
+  return toTweet(first);
 }
