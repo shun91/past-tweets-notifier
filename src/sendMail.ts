@@ -13,12 +13,10 @@ const appPass = process.env.GMAIL_APP_PASSWORD;
 /**
  * メールの本文を作成する
  */
-const createText = ({
-  title,
-  username,
-  tweetCreatedAt,
-  url,
-}: Tweet) => `${title}
+const createText = (tweets: Tweet[]) =>
+  tweets
+    .map(
+      ({ title, username, tweetCreatedAt, url }) => `${title}
 
 ■ Tweeted by
 ${username}
@@ -27,12 +25,14 @@ ${username}
 ${tweetCreatedAt}
 
 ■ URL
-${url}`;
+${url}`
+    )
+    .join("\n\n==============================\n\n");
 
 /**
  * メールを送信する
  */
-export const sendMail = async (tweet: Tweet) => {
+export const sendMail = async (subject: string, tweet: Tweet[]) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: { user: email, pass: appPass },
@@ -41,7 +41,7 @@ export const sendMail = async (tweet: Tweet) => {
   return transporter.sendMail({
     from: email,
     to: email,
-    subject: "Today's Tweet",
+    subject,
     text: createText(tweet),
   });
 };
