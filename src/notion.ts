@@ -45,3 +45,17 @@ export async function fetchRandomly() {
   const first = results[0] as PageObjectResponse;
   return toTweet(first);
 }
+
+export async function fetchAllCreatedYesterday() {
+  const yesterday = new Date();
+  yesterday.setHours(yesterday.getHours() + 9); // timezoneを考慮
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yyyymmdd = yesterday.toISOString().split("T")[0];
+
+  const { results } = await notion.databases.query({
+    database_id: databaseId,
+    filter: { property: "created_at", date: { equals: yyyymmdd } },
+  });
+
+  return (results as PageObjectResponse[]).map(toTweet);
+}

@@ -11,6 +11,11 @@ on:
 jobs:
   notify:
     runs-on: "ubuntu-latest"
+    env:
+      NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+      NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+      GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+      GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
     steps:
       - uses: "actions/checkout@v4"
 
@@ -22,10 +27,8 @@ jobs:
       - id: "install"
         run: yarn install --frozen-lockfile
 
-      - id: "notify"
+      - id: "notify-ramdomly"
         run: yarn ts-node src/notifyRandomly.ts
-        env:
-          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+
+      - id: "notify-yesterday-tweets"
+        run: yarn ts-node src/notifyYesterdayTweets.ts
