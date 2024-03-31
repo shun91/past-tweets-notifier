@@ -46,3 +46,7 @@ yarn ts-node src/notifyYesterdayTweets.ts
 ```
 
 上記のコマンドを実行すると、Notion Database から前日に作成された全ての Tweet を取得し、それをメールで通知します。
+
+## 定期実行
+
+[.github/workflows/notify.yml](.github/workflows/notify.yml)で設定しています。
