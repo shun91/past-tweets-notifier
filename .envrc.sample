@@ -1,0 +1,9 @@
+# Notion API の key
+export NOTION_API_KEY=your_notion_api_key
+# Notion のデータベース ID
+export NOTION_DATABASE_ID=your_notion_database_id
+
+# Gmail のアドレス
+export GMAIL_ADDRESS=your_gmail_address
+# Gmail のアプリパスワード
+export GMAIL_APP_PASSWORD=your_gmail_app_password
