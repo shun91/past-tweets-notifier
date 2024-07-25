@@ -13,7 +13,7 @@ const getTitle = (page: PageObjectResponse) => {
 
 const getUsername = (page: PageObjectResponse) => {
   const { username } = page.properties;
-  return username.type === "rich_text" ? username.rich_text[0].plain_text : "";
+  return username.type === "rich_text" ? username.rich_text[0]?.plain_text : "";
 };
 
 const getTweetCreatedAt = (page: PageObjectResponse) => {
