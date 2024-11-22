@@ -38,7 +38,7 @@ const toTweet = (page: PageObjectResponse) => ({
 export async function fetchRandomly() {
   const { results } = await notion.databases.query({
     database_id: databaseId,
-    sorts: [{ property: "rand", direction: "ascending" }],
+    sorts: [{ property: "rand", direction: "descending" }],
     page_size: 1,
   });
 
